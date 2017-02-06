@@ -24,15 +24,22 @@ function getRandomInt(min, max) {
 }
 function draw(){
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(226,222,242,0.4)';
+    ctx.fillStyle = 'rgba(23,48,89,1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = 'rgba(226,222,242,0.1)';
+    var flag = true;
     objCoords.forEach(function(tmpItem, n) {
         ctx.moveTo(tmpItem.x,tmpItem.y);
-        ctx.arc((tmpItem.x + percX),(tmpItem.y + percY),radius,0,2*Math.PI);
+        if(flag)
+            ctx.arc((tmpItem.x + percX),(tmpItem.y + percY),radius,0,2*Math.PI);
+        else
+            ctx.arc((tmpItem.x - percX),(tmpItem.y - percY),radius,0,2*Math.PI);
+        //flag = !flag;
         ctx.fill();
     }, this);
 
-    ctx.fillStyle = 'rgba(23,48,89,0.4)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
     requestAnimationFrame(draw);
 }
 
